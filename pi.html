@@ -1,0 +1,109 @@
+<!-- Watch out. I have no hosting so everything inline -->
+
+<html>
+
+<head> 
+
+<!-- Google Fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+
+<!-- CSS Reset -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+<!-- Milligram CSS minified -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.1.0/milligram.min.css">
+
+</head>
+
+<body onload="Load()">
+
+
+
+<canvas id="canvas" style="border:1px solid #000000;"></canvas>
+
+<br/>
+
+<h5> Let's get approximating! (badly)</h5>
+
+<button class="button" onclick="Generate(1)">Generate 1</button>
+<button class="button" onclick="Generate(10)">Generate 10</button>
+<button class="button" onclick="Generate(100)">Generate 100</button>
+<button class="button" onclick="Generate(1000)">Generate 1000</button>
+
+<h5> Danger Zone: Will Probably Crash Your Phone</h5>
+
+<button class="button" onclick="Generate(10000)">Generate 10000</button>
+<button class="button" onclick="Generate(100000)">Generate 100000</button>
+<button class="button" onclick="Generate(1000000)">Generate 1000000</button>
+
+<h4 id="piApproximation"> &#960; = ??? </h4>
+
+</body>
+
+<script>
+
+//Heads up: i dont acc know js
+
+var c = document.getElementById ("canvas");
+var ctx = c.getContext("2d");
+var rad = 0; //radius of the circle
+var withinCircle = 0; //The number of points within the circle
+var totalPoints = 0;
+
+function Load (){
+
+	//We want a square (will fuck up on mobile)
+	if (document.body.clientHeight > document.body.clientWidth){
+		c.width = document.body.clientWidth / 1.4;
+		c.height = document.body.clientWidth / 1.4;
+		rad = document.body.clientWidth / 1.4;
+	}
+	else
+	{
+		c.width = document.body.clientHeight / 1.4;
+		c.height = document.body.clientHeight / 1.4;
+		rad = document.body.clientHeight / 1.4;
+	}
+
+	//Draw a circle
+
+	ctx.beginPath();
+	ctx.arc (0,c.height,rad,0,2*Math.PI);
+	ctx.stroke();
+	
+}
+
+function Generate (n){	
+	
+	var pi = 0;
+
+	for (var i = 0; i < n; i++){
+		
+		//Generate a random point
+		var x = Math.random()*c.width;
+		var y = Math.random()*c.height;
+		
+		//Is it within the circle?
+		if (x*x + (c.height-y)*(c.height-y) < rad*rad){
+			withinCircle ++;
+			ctx.fillStyle="#00FF00";
+		}
+		else
+		{
+			ctx.fillStyle="#FF0000";
+		}
+		//Draw a dot at said point
+		ctx.fillRect(x,y,1,1);
+		
+		totalPoints ++;
+	}
+	
+	pi = (4 * withinCircle)/totalPoints;
+	document.getElementById ("piApproximation").innerHTML = "&#960; = "+  pi;
+	
+}
+
+</script>
+
+</html>
+
