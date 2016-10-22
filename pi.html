@@ -17,28 +17,56 @@
 
 <body onload="Load()">
 
+	
+	
 
+<div class="container">
 
-<canvas id="canvas" style="border:1px solid #000000;"></canvas>
-
+<div class="row">
+	<div class="column-100">
+		<canvas id="canvas" style="position: relative; left: 25vh; border:1px solid #000000; "></canvas>
+	</div>
+</div>
 <br/>
+<div class="row">
+	<div class="column">
+	
+		<h5> Let's get approximating! (badly)</h5>
 
-<h5> Let's get approximating! (badly)</h5>
+		<button class="button" onclick="Generate(1)">Generate 1</button>
+		<button class="button" onclick="Generate(10)">Generate 10</button>
+		<button class="button" onclick="Generate(100)">Generate 100</button>
+		<button class="button" onclick="Generate(1000)">Generate 1000</button>
+		<button class="button" onclick="Generate(10000)">Generate 10000</button>
 
-<button class="button" onclick="Generate(1)">Generate 1</button>
-<button class="button" onclick="Generate(10)">Generate 10</button>
-<button class="button" onclick="Generate(100)">Generate 100</button>
-<button class="button" onclick="Generate(1000)">Generate 1000</button>
+		<h5> Danger Zone: Will Probably Crash Your Phone</h5>
 
-<h5> Danger Zone: Will Probably Crash Your Phone</h5>
+		<button class="button" onclick="Generate(100000)">Generate 100000</button>
+		<button class="button" onclick="Generate(1000000)">Generate 1000000</button>
 
-<button class="button" onclick="Generate(10000)">Generate 10000</button>
-<button class="button" onclick="Generate(100000)">Generate 100000</button>
-<button class="button" onclick="Generate(1000000)">Generate 1000000</button>
+		</br></br>
+		<h4 id="piApproximation"> &#960; = ??? </h4>
 
-<h4 id="piApproximation"> &#960; = ??? </h4>
+		</br></br></br></br>
+		<p> Yet another sexy ting by Peter He (@PeterTheHe) <p>
 
-</body>
+	</div>
+
+	<div class="column">
+		<h5> WTF is this? </h5>
+		<p> This webpage approximates &#960 using something called the Monte Carlo Method. This basically means that the approach is based on random numbers.</p>
+
+		<h5> How TF is this possible? </h5>
+		<p> We start with a quarter-circle incribed within a square. Random points are spawned within the square.</p>
+		<p> We can start to approximate &#960 from this because of the areas of the two shapes. The area of the quarter-circle is &#188&#960r <sup>2 </sup> (where r is the radius). The area of the square is r<sup>2 </sup>. </p>
+		<p> If we divide the area of the quarter-circle (the number of points within it) by that of the square, we get &#188&#960. Mutliplying by 4 gives an approximation of &#960.</p>
+
+		
+
+	</div>
+</div>
+
+</div>
 
 <script>
 
@@ -104,6 +132,9 @@ function Generate (n){
 }
 
 </script>
+
+
+</body>
 
 </html>
 
